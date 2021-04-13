@@ -1,0 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    earth.mat                                          :+:    :+:             #
+#                                                      +:+                     #
+#    By: goosterl <goosterl@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2021/02/24 14:41:35 by goosterl      #+#    #+#                  #
+#    Updated: 2021/02/24 14:52:54 by goosterl      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+diffuse_map		"textures/earth_col.xpm"	1
+normal_map		"textures/earth_nml.xpm"	1
+specular_map	"textures/earth_spc.xpm"	1
+reflection_map	"textures/earth_rfl.xpm"	1
+gloss 0.25

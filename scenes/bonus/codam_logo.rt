@@ -1,0 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    codam_logo.rt                                      :+:    :+:             #
+#                                                      +:+                     #
+#    By: goosterl <goosterl@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2021/04/09 15:52:39 by goosterl      #+#    #+#                  #
+#    Updated: 2021/04/10 22:38:35 by goosterl      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+R 512 512
+VP quarter
+SKY "textures/sky_alkatraz.xpm" 5 1
+BRDF 16 6
+c -12.152936,0.427200,-0.474568 0.983198,0.181187,-0.009710 43.000000 -dof 2 0.02 3
+cy -6,1,1 0,1,0 2 2 255,255,255 -mat "materials/codam_logo.mat"
+cy 3,2.5,-2 0,1,0 5 5 255,255,255 -mat "materials/codam_logo.mat"
+pl 0,0,0 0,1,0 255,255,255 -mat "materials/roughness_map.mat"
+obj "wavefront/mountains.obj" 0,-10,0 255,255,255

@@ -1,0 +1,6 @@
+R 512 512
+A 1 255,255,255
+
+pl 0,0,0 0,1,0 255,255,255 -ma "materials/weeeeeeee"
+pl 0,0,0 0,1,0 255,255,255 -mat "materials/weeeeeeee.mat"
+c 0,0,-4 0,0,1 90

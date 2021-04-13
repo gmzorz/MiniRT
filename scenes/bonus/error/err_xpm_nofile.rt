@@ -1,0 +1,7 @@
+R 512 512
+A 1 255,255,255
+SKY "textures/nope.xpm" 1 1
+SKY "textures/nope.xpd" 1 1
+
+pl 0,0,0 0,1,0 255,255,255 -mat "materials/nofile.mat"
+c 0,0,-4 0,0,1 90

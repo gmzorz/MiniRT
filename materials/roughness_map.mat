@@ -1,0 +1,11 @@
+diffuse_map		"textures/stained_dif.xpm"
+normal_map		"textures/stained_nml.xpm"
+roughness_map	"textures/stained_rgh.xpm"
+reflection_map	"textures/stained_rfl.xpm"
+specular_map	"textures/stained_spc.xpm"
+
+
+#diffuse 128,128,128
+
+scale_x 0.6
+scale_y 0.6

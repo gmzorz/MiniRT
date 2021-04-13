@@ -1,0 +1,8 @@
+diffuse_map	"textures/codam_logo.xpm"
+emission_map "textures/codam_logo.xpm"
+
+scale_x 0.5
+roughness 0.1
+reflection 255,255,255
+specular 255,255,255
+scale_y 1

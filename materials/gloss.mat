@@ -1,0 +1,5 @@
+#Specular highlight
+gloss 0.2
+
+#Specular color/map is required
+specular 255,255,255

@@ -1,0 +1,7 @@
+R 512 512
+SKY "textures/test_hdri.xpm"
+SKY "textures/test_hdri.xpm"
+VP full
+
+c 0,0,-10 0,0,1 90
+sp 0,0,0 5 255,255,255

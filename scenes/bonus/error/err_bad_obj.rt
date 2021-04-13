@@ -1,0 +1,11 @@
+R 512 512
+A 1 255,255,255
+
+# not an actual obj file
+obj "wavefront/garbage.obj" 0,0,0 255,255,255
+
+# does not exist
+obj "wavefront/nope.obj" 0,0,0 255,255,255
+
+# face indexing is wrong (not enough vertices for index)
+obj "wavefront/faces_are_wrong.obj" 0,0,0 255,255,255

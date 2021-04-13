@@ -1,0 +1,45 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    suzanne_obj.rt                                     :+:    :+:             #
+#                                                      +:+                     #
+#    By: goosterl <goosterl@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2021/04/07 16:23:31 by goosterl      #+#    #+#                  #
+#    Updated: 2021/04/13 13:37:41 by goosterl      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+R 512 512
+VP half
+A 0 255,255,255
+SKY "textures/sky_training.xpm" 10 1
+SUN 1,0.4,0 27 0.4 255,255,255
+BRDF 12 4 --save
+# threads 4
+AA 4 1
+
+l 0,10,10 1 255,190,255
+l 10,10,0 1 255,255,190
+l -10,10,0 1 190,255,255
+l 0,10,-10 1 255,190,190
+c -2.5,1,-5 0.5,0,1 45 -dof 0 0.2 5.3 "textures/lens_shapes/wave.xpm"
+obj "wavefront/suzanne.obj" 0,0,0 255,190,255
+# obj "wavefront/suzanne.obj" 10,4,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 7.5,4,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 5,4,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 2.5,4,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 0,4,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" -2.5,4,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 10,2,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 7.5,2,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 5,2,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 2.5,2,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 0,2,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" -2.5,2,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 7.5,0,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 5,0,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 2.5,0,5 190,255,255 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" 0,0,5 255,255,190 -mat "materials/specular.mat"
+# obj "wavefront/suzanne.obj" -2.5,0,5 255,255,190 -mat "materials/specular.mat"
+ds 0,0,0 0,1,0 20 100,100,100 -mat "materials/roughness_map.mat"

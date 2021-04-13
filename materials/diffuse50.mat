@@ -1,0 +1,5 @@
+diffuse 150,150,150
+reflection 255,255,255
+specular 255,255,255
+
+roughness 0.2

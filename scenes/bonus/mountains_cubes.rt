@@ -1,0 +1,9 @@
+R 512 512
+SKY "textures/sky_training.xpm" 5 1
+c 6.514678,18,-15.245562 -0.876307,0,0.481754 65 -dof 0 0.2 20 "textures/lens_shapes/wave.xpm"
+VP quarter
+BRDF 32 10
+
+obj "wavefront/mountains.obj" 0,0,0 255,255,255 -mat "materials/diffuse50.mat"
+cb -16,18,15 -0.4,1,0.2 10 255,255,255 -mat "materials/diffuse50.mat"
+cb -20,18,-15 0.4,-1,-0.2 8 255,255,255 -mat "materials/diffuse50.mat"

@@ -1,0 +1,37 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    skybox_reflections.rt                              :+:    :+:             #
+#                                                      +:+                     #
+#    By: goosterl <goosterl@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2021/02/24 11:15:43 by goosterl      #+#    #+#                  #
+#    Updated: 2021/04/13 15:09:59 by goosterl      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+R 512			512
+A 0				255,255,255
+
+#	Try Anti aliasing!
+#	Samples		Acellerate (sobel)
+AA	8			1
+
+
+c -9.847,8.657,-15.111 0.470,-0.392,0.790 80.000000
+c -1.302,3.007,-8.561 -0.794,-0.294,0.478 60.000000
+c 0.813,2.219,-2.256 -0.671,0.107,0.697 60.000000
+c -4.169,4.584,-1.929 0.773,0.054,0.626 60.000000
+c -0.552,3.466,-2.280 0.746,-0.407,-0.525 60.000000
+
+#	DIR						Emission (BRDF ONLY)	De-gamma before using
+SKY "textures/sky_museum.xpm"	1						1
+
+l 20,8,-20 					1	255,255,255
+l -20,8,-20 				1 	255,255,255
+sq	0,0,0		0,1,0		30 	255,255,255		-mat "materials/uv_test.mat"
+cb	5,2.5,5		1,0,0.3		5	255,255,255		-mat "materials/reflections.mat"
+cb	5,7.5,5		1,0,-0.3		5	255,255,255		-mat "materials/reflections.mat"
+py	-6,0,-6		0,1,0.1	4 6	90,69,120		-mat "materials/reflections.mat"
+cyc -6,4.5,5 	0,1,0 	5 15 190,255,160		-mat "materials/reflections.mat"
+sp 5,0,-6 					7 	128,128,240		-mat "materials/reflections.mat"

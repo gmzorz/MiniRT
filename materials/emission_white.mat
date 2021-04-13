@@ -1,0 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    emission_white.mat                                 :+:    :+:             #
+#                                                      +:+                     #
+#    By: goosterl <goosterl@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2021/02/03 11:54:11 by goosterl      #+#    #+#                  #
+#    Updated: 2021/02/12 20:22:39 by goosterl      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+#diffuse		128,128,128
+gloss		0
+#specular	255,255,255
+
+#emission is PBR only, any input is valid (no color limits)
+emission	25,25,25
+
+#Gloss = -roughness
