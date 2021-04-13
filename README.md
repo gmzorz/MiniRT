@@ -88,10 +88,10 @@ Left to right: Flat, unlit, normals, units and UVs
 The mandatory part of the project requires you to code a classic one-ray-per-pixel style ray tracer. However for the bonus part of MiniRT i implemented a **BRDF** rendering equation to render more realistic looking scenes. This includes Global illumination, roughness materials, soft shadows and depth of field sampling. Another neat little feature is the rendering of complex `.obj` triangle meshes, using a BVH acceleration structure. Other fun things include material loading on top of the standard 8bit color defines.
 
 
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/stanford_dragon.png?raw=true" width="220" height="220"></img>
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/anamorphic_blur.png?raw=true" width="220" height="220"></img>
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/forest.png?raw=true" width="220" height="220"></img>
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/artsy.png?raw=true" width="220" height="220"></img>
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/stanford_dragon.png?raw=true" width="200" height="200"></img>
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/anamorphic_blur.png?raw=true" width="200" height="200"></img>
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/forest.png?raw=true" width="200" height="200"></img>
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/artsy.png?raw=true" width="200" height="200"></img>
 
 
 MiniRT uses MinilibX, a small graphics library that allows for simple window management and putting pixels to the screen.
