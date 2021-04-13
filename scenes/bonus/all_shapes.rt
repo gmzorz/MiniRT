@@ -13,7 +13,18 @@
 # Comments!
 R 1280			512
 A 0				255,255,255
+
+# Viewport scale (full, half, quarter)
+VP full
+
+# BRDF  samples   bounces
+BRDF    16        4
+
+# Anti aliasing   samples   acellarate
+AA                16        1
+
 c 0,2.5,-10		0,0,1			65
+
 
 
 # 	Disk (cylinder cap)
