@@ -10,11 +10,26 @@ using the Raytracing protocol.  Those computer generated images will each repres
 # Compiling
 running `make` will compile the mandatory part, `make bonus` will overwrite and add the bonus. `make clean` or `make fclean` can be used to wipe binaries
 
-# Usage & Keybinds
+# Usage
 Run using: `./MiniRT path/to/file.rt` or `./MiniRT path/to/file.rt --save` to render and save the image.
 MiniRT supports files suffixed with the **.rt** extension. All rules from the PDF apply.
 The two shell scripts in the root of this directory will run tests (using scenes/../error) to ensure these errors are handled properly.
 
+### Scenes
+Shapes and elements can be defined in the scene (.rt) files. a simple scene with all elements may look like this:
+| ID  | Origin | Orientation | Scale | Radius | width | Height | Color |
+|-|-|-|-|-|-|-|-|
+|R|-|-|-|-|640|360|-|
+|A|-|-|0.25|-|-|-|255,255,255|
+|c|0,0,-10|0,0,1|65.0|-|
+|l|0,10,10|-|0.75|-|-|-|255,255,255|
+|pl|0,0,0|0,1,0|-|-|-|-|129,22,255|
+|sp|0,1.25,0|-|-|2.5|-|-|129,22,90|
+|sq|-1,4,2|1,1,-1|5|-|-|-|129,255,90|
+|cy|1,2,-2|-0.2,0.3,1|-|3|-|10|129,255,90|
+|tr|0,0,0 2,5,0 0,3,-5|-|-|-|-|-|255,255,255|
+
+### Keybinds
 Keybinds can be found in [key.c](https://github.com/gmzorz/MiniRT/blob/main/sources/jump/key.c) for the mandatory part, or [key_bonus.c](https://github.com/gmzorz/MiniRT/blob/main/sources/jump/key_bonus.c) for the bonus part.
 <details>
 <summary>key.c</summary>
@@ -63,6 +78,7 @@ Keybinds can be found in [key.c](https://github.com/gmzorz/MiniRT/blob/main/sour
 * `Down` - Translate in the negative direction (if translation axis is set)
 * `Plus` - Increase FOV
 * `Minus` - Decrease FOV
+* `Shift` - Take screenshot
 </details>
 
 <details>
