@@ -28,6 +28,7 @@ Shapes and elements can be defined in the scene (.rt) files. a simple scene with
 |sq|-1,4,2|1,1,-1|5|-|-|-|129,255,90|
 |cy|1,2,-2|-0.2,0.3,1|-|3|-|10|129,255,90|
 |tr|0,0,0 2,5,0 0,3,-5|-|-|-|-|-|255,255,255|
+
 [Bonus scenes](https://github.com/gmzorz/MiniRT/tree/main/scenes/bonus)
 
 ### Keybinds
