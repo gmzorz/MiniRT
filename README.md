@@ -19,15 +19,49 @@ The two shell scripts in the root of this directory will run tests (using scenes
 Shapes and elements can be defined in the scene (.rt) files. a simple scene with all elements may look like this:
 | ID  | Origin | Orientation | Scale | Radius | width | Height | Color |
 |-|-|-|-|-|-|-|-|
-|R|-|-|-|-|640|360|-|
-|A|-|-|0.25|-|-|-|255,255,255|
-|c|0,0,-10|0,0,1|65.0|-|
-|l|0,10,10|-|0.75|-|-|-|255,255,255|
-|pl|0,0,0|0,1,0|-|-|-|-|129,22,255|
-|sp|0,1.25,0|-|-|2.5|-|-|129,22,90|
-|sq|-1,4,2|1,1,-1|5|-|-|-|129,255,90|
-|cy|1,2,-2|-0.2,0.3,1|-|3|-|10|129,255,90|
-|tr|0,0,0 2,5,0 0,3,-5|-|-|-|-|-|255,255,255|
+|R| | | | |640|360|
+|A| | |0.25| | | |255,255,255|
+|c|0,0,-10|0,0,1|65.0|
+|l|0,10,10| |0.75| | | |255,255,255|
+|pl|0,0,0|0,1,0| | | | |129,22,255|
+|sp|0,1.25,0| | |2.5| | |129,22,90|
+|sq|-1,4,2|1,1,-1|5| | | |129,255,90|
+|cy|1,2,-2|-0.2,0.3,1| |3| |10|129,255,90|
+|tr|0,0,0 2,5,0 0,3,-5| | | | | |255,255,255|
+
+<details>
+<summary>Bonus scene syntax</summary>
+ 
+**Anti Aliasing**:
+| ID  | Samples per pixel | Sobel accelerate (best on untextured shapes) |
+|-|-|-|
+| AA | 16 | 1 |
+
+**Viewport resolution**:
+| ID  | Value (full, half, quarter |
+|-|-|
+| VP | full |
+
+**Skybox**:
+| ID  | Path | Emission (brdf only) | De-gamma |
+|-|-|-|-|
+| SKY | "textures/sky.xpm" | 10 | 1 |
+
+**Sun (brdf only)**:
+| ID  | Direction | Emission | scale |
+|-|-|-|-|
+| SUN | 1,1,0 | 27 | 0.4 |
+
+**Multi threading**:
+| ID  | Count |
+|-|-|
+| THREADS | 4 |
+
+**Wavefront OBJ**:
+| ID  | path | origin | color |
+|-|-|-|-|
+| obj | "wavefront/suzanne.obj" | 0,0,0 | 255,255,255 |
+</details>
 
 [Bonus scenes](https://github.com/gmzorz/MiniRT/tree/main/scenes/bonus)
 
