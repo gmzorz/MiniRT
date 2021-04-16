@@ -32,10 +32,15 @@ Shapes and elements can be defined in the scene (.rt) files. a simple scene with
 <details>
 <summary>Bonus scene syntax</summary>
  
-**Anti Aliasing**:
+**Anti aliasing**:
 | ID  | Samples per pixel | Sobel accelerate (best on untextured shapes) |
 |-|-|-|
 | AA | 16 | 1 |
+
+**BRDF rendering**:
+| ID  | Samples per pixel (times four) | Scene bounces | Save after rendering (optional) |
+|-|-|-|-|
+| BRDF | 16 | 4 | --save |
 
 **Viewport resolution**:
 | ID  | Value (full, half, quarter |
@@ -58,15 +63,24 @@ Shapes and elements can be defined in the scene (.rt) files. a simple scene with
 | THREADS | 4 |
 
 **Wavefront OBJ**:
-| ID  | path | origin | color |
+| ID  | Path | Origin | Color |
 |-|-|-|-|
 | obj | "wavefront/suzanne.obj" | 0,0,0 | 255,255,255 |
+
+**Shapes & elements**:
+| ID  | origin | orientation | Scale | Height | Color | Material (optional) |
+|-|-|-|-|-|-|-|
+| ds | 0,1,0 | 0.577,0.577,0.577 | 5.2 | | 255,255,255 | -mat "materials/specular.mat" |
+| cb | 1,1,1 | 0.77,0.77,1 | 3 | | 255,255,255 | -mat "materials/cube.mat" |
+| py | 0,0,0 | -1,1,-1 | 3 | 5 | 127,128,127 | -mat "materials/pyramid.mat" |
+| cyc | 0,0,0 | 0,1,0 | 2 | 5 | 127,93,220 | -mat "materials/cylinder_cap.mat" |
+| lp | 0,10,0 | 0,-1,0 | 0.3 | | 255,255,255 | |
 </details>
 
 [Bonus scenes](https://github.com/gmzorz/MiniRT/tree/main/scenes/bonus)
 
 ### Keybinds
-Keybinds can be found in [key.c](https://github.com/gmzorz/MiniRT/blob/main/sources/jump/key.c) for the mandatory part, or [key_bonus.c](https://github.com/gmzorz/MiniRT/blob/main/sources/jump/key_bonus.c) for the bonus part.
+Keybinds can be found in [key.c](https://github.com/gmzorz/MiniRT/blob/main/sources/jump/key.c) for the mandatory part, or [key_bonus.c](https://github.com/gmzorz/MiniRT/blob/main/sources/jump/key_bonus.c) for the bonus part. The same goes for [mouse_bonus.c](https://github.com/gmzorz/MiniRT/blob/main/sources/jump/mouse_bonus.c)
 <details>
 <summary>key.c</summary>
   
@@ -84,6 +98,7 @@ Keybinds can be found in [key.c](https://github.com/gmzorz/MiniRT/blob/main/sour
   
 * `Escape` - Exit program
 * `Enter` - Render scene
+* `Space` - Render BRDF
 * `1` - Render image using flat shading
 * `2` - Render image using unlit colors
 * `3` - Debug bounding volumes
@@ -180,16 +195,20 @@ The program can render the following shapes and scene elements using their respe
 More about these identifiers can be found in the [scenes](https://github.com/gmzorz/MiniRT/edit/main/scenes/bonus) directory
 </details>
 
-
-
-Other bonus subjects handled are:
+Bonuses handled (15):
 * Normal disruption using sine over UV coordinates
 * Color disruption: checkerboard pattern
 * Color disruption: rainbow effect using object's normal
+* Parallel light following a precise dirxection
+* Compound element: Cube (six squares)
+* Compound element: Pyramid (four triangles, one square)
+* Caps on cylinders (disks)
 * One color filter: Gamma correction & Sobel edge detection
-* Sphere texturing: uv mapping
-* Shape texturing: uv mapping (All other shapes)
+* Anti Aliasing
+* Multithreaded rendering
+* Sphere texturing: uv mapping (fixed to work with all shapes)
 * Handle bump map textures (Normal map)
+* A beautiful skybox
 * Keyboard interactivity (translation/rotation) with the camera
 * Keyboard interactivity (translation/rotation) with shapes
 
@@ -214,8 +233,42 @@ In blender, the export settings can include modifiers but the output **has** to 
 
 The model above consists of over 1.000.000 triangles, rendering these triangles is done through a Bounding Volume Hierarchy octree structure, which means the intersection tests are narrowed down and allows for faster rendering. I have attempted to make a comparison, but as it turns out.. rendering 1M triangles without a BVH structure is just not really what you want to be waiting on.
 
+# Materials
+
+Materials can be applied to any shape using the `-mat` flag, followed by a file path `"dir/file.mat"` written directly behind the color input. Materials allow for the customization of reflections, specularity, gloss, emission, normal transformation and emission. We can also specify custom textures to map these values according to their respective UV coordinates.
+
+The following table shows an example of a valid `.mat` syntax, and which materials can be used on what render mode (checkmark indicators are excluded from the actual .mat file, see: [Materials](https://github.com/gmzorz/MiniRT/tree/main/materials)). For clarification, **Gloss** and **roughness** are almost the same, however gloss affects the specular exponent used to generate a *shine* effect in the classic ray tracer. the input is linear, and is computed to match the exponent value. The roughness BRDF value determines the mix between diffuse and reflection, which results in the shape's gloss level (0.0 being fully reflective & glossy, whereas gloss in classic tracing has a maximum value of 1.0 being the gloss amount. **Specularity** is the blending value between diffuse and gloss, and **reflection** is the blending value between diffuse and reflected rays. **emmission** allows for the shape to emit light instead of absorb it. Color blend for emission is not capped to any value
+ID|flags|Amount|Color blend|Classic|BRDF|
+-|-|-|-|-|-|
+diffuse| | | 255,128,128 | ✅ | ✅ |
+specular| | | 255,255,255 | ✅ | ❌ |
+reflection| | | 255,255,255 | ✅ | ✅ |
+gloss | | 0.5 | | ✅ | ❌ |
+roughness | | 0.5 | | ❌ | ✅ |
+emission | | | 100,100,100 | ❌ | ✅ |
+
+We can map these values according to UV coordinates by loading image textures. This is also where **normal maps** come in, they are however only "valid" on classic ray tracing. A BRDF uses a randomization monte carlo algorithm, so in certain cases this will invalidate the use of normal maps because rays can end up facing in directions that point inwards of a shape. This issue is not being dealt with, some normal maps can apply to a BRDF mixed with the right roughness values. Gloss values can be mapped as well, but in most cases i invert the roughness channel in order to get a valid gloss map, the same can be done the opposite way.
+|ID|Path to texture file|
+|-|-|
+diffuse_map	|	"textures/stained_dif.xpm" |
+normal_map	|	"textures/stained_nml.xpm" |
+roughness_map	| "textures/stained_rgh.xpm" |
+reflection_map	| "textures/stained_rfl.xpm" |
+specular_map	| "textures/stained_spc.xpm" |
+emission_map | "textures/stained_ems.xpm" |
+
+Other material properties include the sine wave bonus, and the option to scale textures' width and height:
+|ID|flag (u/v/uv) |Amplitude|Frequency|
+|-|-|-|-|
+wave | uv | 0.5 | 100 |
+
+|ID| Scale |
+|-|-|
+scale_x | 0.5 |
+scale_y | 1.2 |
+
 # Depth of field
 
-One of the things i personally enjoy is a good **Bokeh**, this describes the circular shape of the depth of field in current day cameras, as well as anamorphic ellipse-type shapes. Both of these have been implemented using the appropriate sampling methods, as well as a rejection method for custom lens shapes
+One of the things i personally enjoy is a good **Bokeh**, this describes the circular shape of the depth of field in cameras, as well as anamorphic ellipse-type shapes. Both of these have been implemented using the appropriate sampling methods, as well as a rejection method for custom lens shapes
 
-<img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/Tue Feb 16 18:49:24 2021.bmp?raw=true" width="512" height="512"></img>
+<img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/Tue Feb 16 18:49:24 2021.bmp?raw=true" width="256" height="256"></img>
