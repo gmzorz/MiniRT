@@ -240,12 +240,12 @@ Materials can be applied to any shape using the `-mat` flag, followed by a file 
 The following table shows an example of a valid `.mat` syntax, and which materials can be used on what render mode (checkmark indicators are excluded from the actual .mat file, see: [Materials](https://github.com/gmzorz/MiniRT/tree/main/materials)). For clarification, **Gloss** and **roughness** are almost the same, however gloss affects the specular exponent used to generate a *shine* effect in the classic ray tracer. the input is linear, and is computed to match the exponent value. The roughness BRDF value determines the mix between diffuse and reflection, which results in the shape's gloss level (0.0 being fully reflective & glossy, whereas gloss in classic tracing has a maximum value of 1.0 being the gloss amount. **Specularity** is the blending value between diffuse and gloss, and **reflection** is the blending value between diffuse and reflected rays. **emmission** allows for the shape to emit light instead of absorb it. Color blend for emission is not capped to any value
 ID|flags|Amount|Color blend| |Classic|BRDF|
 -|-|-|-|-|-|-|
-diffuse| | | 255,128,128 | EOL | ✅ | ✅ |
-specular| | | 255,255,255 | EOL | ✅ | ❌ |
-reflection| | | 255,255,255 | EOL | ✅ | ✅ |
-gloss | | 0.5 | | EOL | ✅ | ❌ |
-roughness | | 0.5 | | EOL | ❌ | ✅ |
-emission | | | 100,100,100 | EOL | ❌ | ✅ |
+diffuse| | | 255,128,128 | `EOL` | ✅ | ✅ |
+specular| | | 255,255,255 | `EOL` | ✅ | ❌ |
+reflection| | | 255,255,255 | `EOL` | ✅ | ✅ |
+gloss | | 0.5 | | `EOL` | ✅ | ❌ |
+roughness | | 0.5 | | `EOL` | ❌ | ✅ |
+emission | | | 100,100,100 | `EOL` | ❌ | ✅ |
 
 We can map these values according to UV coordinates by loading image textures. This is also where **normal maps** come in, they are however only "valid" on classic ray tracing. A BRDF uses a randomization monte carlo algorithm, so in certain cases this will invalidate the use of normal maps because rays can end up facing in directions that point inwards of a shape. This issue is not being dealt with, some normal maps can apply to a BRDF mixed with the right roughness values. Gloss values can be mapped as well, but in most cases i invert the roughness channel in order to get a valid gloss map, the same can be done the opposite way.
 |ID|Path to texture file|
