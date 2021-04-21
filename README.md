@@ -7,6 +7,8 @@ Graphics project for Codam / 42 school, my first ray tracer using MinilibX.
 >The goal of your program is to generate images
 using the Raytracing protocol.  Those computer generated images will each represent a scene, as seen from a specific angle and position, defined by simple geometric objects, and each with its own lighting system.
 
+**Project Grade: 115**
+
 # Compiling
 running `make` will compile the mandatory part, `make bonus` will overwrite and add the bonus. `make clean` or `make fclean` can be used to wipe binaries
 
