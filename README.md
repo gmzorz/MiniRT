@@ -1,6 +1,8 @@
 # MiniRT
 
-<img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/stdvsbrdf.png?raw=true" width="960" height="384"></img>
+<p align="center">
+<img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/stdvsbrdf.png?raw=true"></img>
+</p>
 Graphics project for Codam / 42 school, my first ray tracer using MinilibX.
 
 **Project goal:**
