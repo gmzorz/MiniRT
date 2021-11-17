@@ -9,7 +9,68 @@ Graphics project for Codam / 42 school, my first ray tracer using MinilibX.
 >The goal of your program is to generate images
 using the Raytracing protocol.  Those computer generated images will each represent a scene, as seen from a specific angle and position, defined by simple geometric objects, and each with its own lighting system.
 
-**Project Grade: 115**
+**Project Grade: 115/100**
+
+# About
+The mandatory part of the project requires you to code a classic one-ray-per-pixel style ray tracer. However for the bonus part of MiniRT i implemented a **BRDF** rendering equation to render more realistic looking scenes. This includes Global illumination, roughness materials, soft shadows and depth of field sampling. Another neat little feature is the rendering of complex `.obj` triangle meshes, using a BVH acceleration structure. Other fun things include material loading on top of the standard 8bit color defines.
+
+
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/stanford_dragon.png?raw=true" width="200" height="200"></img>
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/anamorphic_blur.png?raw=true" width="200" height="200"></img>
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/forest.png?raw=true" width="200" height="200"></img>
+  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/artsy.png?raw=true" width="200" height="200"></img>
+
+
+MiniRT uses MinilibX, a small graphics library that allows for simple window management and putting pixels to the screen.
+The program can render the following shapes and scene elements using their respective identifiers:
+<details>
+<summary>Mandatory:</summary>
+  
+* `R`   - Window resolution
+* `A`   - Ambient lighting
+* `l`   - Point light
+* `c`   - Camera
+* `pl`  - Plane
+* `sp`  - Sphere
+* `cy`  - Cylinder (non-capped)
+* `sq`  - Square
+* `tr`  - Triangle
+</details>
+
+<details>
+<summary>Bonus:</summary>
+  
+* `SKY` - Skybox loading
+* `SUN` - Sun rendering (emission BRDF only)
+* `THREADS` - Multithreaded rendering (BRDF only)
+* `AA`  - Anti aliasing (Classic shading only), option to accelerate
+* `VP`  - Viewport resolution (downscaling for faster debugging)
+* `cb`  - Cube (6 squares)
+* `py`  - Pyramid (One square, four triangles)
+* `ds`  - Disk
+* `cyc` - Capped cylinders
+* `obj` - Triangle mesh
+* `lp`  - Parallel light (fixed direction)
+
+More about these identifiers can be found in the [scenes](https://github.com/gmzorz/MiniRT/edit/main/scenes/bonus) directory
+</details>
+
+Bonuses handled (15):
+* Normal disruption using sine over UV coordinates
+* Color disruption: checkerboard pattern
+* Color disruption: rainbow effect using object's normal
+* Parallel light following a precise dirxection
+* Compound element: Cube (six squares)
+* Compound element: Pyramid (four triangles, one square)
+* Caps on cylinders (disks)
+* One color filter: Gamma correction & Sobel edge detection
+* Anti Aliasing
+* Multithreaded rendering
+* Sphere texturing: uv mapping (fixed to work with all shapes)
+* Handle bump map textures (Normal map)
+* A beautiful skybox
+* Keyboard interactivity (translation/rotation) with the camera
+* Keyboard interactivity (translation/rotation) with shapes
 
 # Compiling
 running `make` will compile the mandatory part, `make bonus` will overwrite and add the bonus. `make clean` or `make fclean` can be used to wipe binaries
@@ -154,67 +215,6 @@ Keybinds can be found in [key.c](https://github.com/gmzorz/MiniRT/blob/main/sour
 <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/Mon%20Apr%2012%2022:28:33%202021.png?raw=true" width="150" height="150"></img>
 
 Left to right: Flat, unlit, normals, units and UVs
-
-# About
-The mandatory part of the project requires you to code a classic one-ray-per-pixel style ray tracer. However for the bonus part of MiniRT i implemented a **BRDF** rendering equation to render more realistic looking scenes. This includes Global illumination, roughness materials, soft shadows and depth of field sampling. Another neat little feature is the rendering of complex `.obj` triangle meshes, using a BVH acceleration structure. Other fun things include material loading on top of the standard 8bit color defines.
-
-
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/stanford_dragon.png?raw=true" width="200" height="200"></img>
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/anamorphic_blur.png?raw=true" width="200" height="200"></img>
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/forest.png?raw=true" width="200" height="200"></img>
-  <img src="https://github.com/gmzorz/MiniRT/blob/main/screenshots/artsy.png?raw=true" width="200" height="200"></img>
-
-
-MiniRT uses MinilibX, a small graphics library that allows for simple window management and putting pixels to the screen.
-The program can render the following shapes and scene elements using their respective identifiers:
-<details>
-<summary>Mandatory:</summary>
-  
-* `R`   - Window resolution
-* `A`   - Ambient lighting
-* `l`   - Point light
-* `c`   - Camera
-* `pl`  - Plane
-* `sp`  - Sphere
-* `cy`  - Cylinder (non-capped)
-* `sq`  - Square
-* `tr`  - Triangle
-</details>
-
-<details>
-<summary>Bonus:</summary>
-  
-* `SKY` - Skybox loading
-* `SUN` - Sun rendering (emission BRDF only)
-* `THREADS` - Multithreaded rendering (BRDF only)
-* `AA`  - Anti aliasing (Classic shading only), option to accelerate
-* `VP`  - Viewport resolution (downscaling for faster debugging)
-* `cb`  - Cube (6 squares)
-* `py`  - Pyramid (One square, four triangles)
-* `ds`  - Disk
-* `cyc` - Capped cylinders
-* `obj` - Triangle mesh
-* `lp`  - Parallel light (fixed direction)
-
-More about these identifiers can be found in the [scenes](https://github.com/gmzorz/MiniRT/edit/main/scenes/bonus) directory
-</details>
-
-Bonuses handled (15):
-* Normal disruption using sine over UV coordinates
-* Color disruption: checkerboard pattern
-* Color disruption: rainbow effect using object's normal
-* Parallel light following a precise dirxection
-* Compound element: Cube (six squares)
-* Compound element: Pyramid (four triangles, one square)
-* Caps on cylinders (disks)
-* One color filter: Gamma correction & Sobel edge detection
-* Anti Aliasing
-* Multithreaded rendering
-* Sphere texturing: uv mapping (fixed to work with all shapes)
-* Handle bump map textures (Normal map)
-* A beautiful skybox
-* Keyboard interactivity (translation/rotation) with the camera
-* Keyboard interactivity (translation/rotation) with shapes
 
 # Mesh loading
 Mesh loading is simple and limited, MiniRT will only parse vertices and triangulated faces. Vertex normals are computed by the program itself. 
